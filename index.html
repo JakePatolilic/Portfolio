@@ -99,6 +99,39 @@
         </div>
     </div>
 
+    <div class="thirdSection">
+        <div class="work-experience">
+            <h1> Work Experience </h1>
+            
+            <div class="experience">
+                <div class="content">
+                    <h2>Web Developer Intern</h2>
+                    <h3>Department of Science and Technology</h3>
+                    <h5>July - August 2024</h5>
+
+                    <div class="description">
+                        Developed full-stack web applications implementing both front-end and back-end features. Created responsive UI components based on design specifications and business requirements, ensuring optimal user experience across different devices and browsers.
+                    </div>
+
+                    <div class="tech-stack">
+                        <h4>Technologies Used:</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-img cert-hidden-right">
+                    <div class="cert-img-card"><img src="./images/cert.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="galleryOverlay" class="gallery-overlay">
         <span id="closeGallery">&times;</span>
         <h2 id="galleryTitle">Tree Monitoring System</h2> 
@@ -128,6 +161,7 @@
     const frontendDescription = document.querySelector('.frontendDescription');
     const projects = document.querySelectorAll('.project');
     const techs = document.querySelectorAll('.tech-container');
+    const exp = document.querySelectorAll('.experience');
 
     container.addEventListener('mousemove', (e) => {
         const containerRect = container.getBoundingClientRect();
@@ -203,25 +237,31 @@
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const imagesDiv = entry.target.querySelector('.project-images');
-                
-                if (entry.target.classList.contains('reverse')) {
-                    imagesDiv.classList.remove('project-hidden-left');
-                } else {
-                    imagesDiv.classList.remove('project-hidden-right');
+                const imagesDiv = entry.target.querySelector('.project-images, .cert-img');
+
+                if (imagesDiv) {
+                    if (entry.target.classList.contains('reverse')) {
+                        imagesDiv.classList.remove('project-hidden-left', 'cert-hidden-left');
+                    } else {
+                        imagesDiv.classList.remove('project-hidden-right', 'cert-hidden-right');
+                    }
+
+                    imagesDiv.classList.add('project-visible', 'cert-visible');
                 }
 
-                imagesDiv.classList.add('project-visible');
-                
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.5 
+        threshold: 0.5
     });
 
     projects.forEach(project => {
         observer.observe(project);
+    });
+
+    exp.forEach(exp => {
+        observer.observe(exp);
     });
 
     const projectImg = document.getElementById("projectImg");
