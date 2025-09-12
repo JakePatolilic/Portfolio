@@ -41,24 +41,24 @@ body {
         }
 
         .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
 
-        li {
-            a {
-                text-decoration: none;
-                color: black;
-                font-weight: 500;
-                font-size: 1rem;
-                transition: color 0.3s ease, transform 0.2s ease;
+            li {
+                a {
+                    text-decoration: none;
+                    color: black;
+                    font-weight: 500;
+                    font-size: 1rem;
+                    transition: color 0.3s ease, transform 0.2s ease;
 
-                &:hover {
-                    color: #FCD53A;
-                    transform: translateY(-2px);
+                    &:hover {
+                        color: #FCD53A;
+                        transform: translateY(-2px);
+                    }
                 }
             }
-        }
         }
     }
 
@@ -898,6 +898,42 @@ body {
     }
 }
 
+.fourthSection {
+    padding: 3rem;
+    gap: 25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    a {
+        color: rgb(130, 130, 130);
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+
+        li {
+            a {
+                text-decoration: none;
+                color: rgb(130, 130, 130);
+                font-weight: 400;
+                font-size: 1rem;
+                transition: color 0.3s ease, transform 0.2s ease;
+
+                &:hover {
+                    color: #3c3c3c;
+                    transform: translateY(-2px);
+                }
+            }
+        }
+    }
+
+}
+
 
 @media (max-width: 1500px) {
     .backendDescription,
@@ -981,6 +1017,10 @@ body {
             width: 80%;
             height: 80%;
         }
+    }
+
+    .fourthSection {
+        gap: 10rem;
     }
 }
 
@@ -1067,6 +1107,12 @@ body {
         img {
             width: 80%;
             height: 80%;
+        }
+    }
+
+    .fourthSection {
+        .nav-links {
+            display: none;
         }
     }
 }
