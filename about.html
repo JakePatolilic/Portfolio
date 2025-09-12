@@ -3,12 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="about.css">
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1>About Me</h1>
-        <p>This is the about page.</p>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">JP</div>
+
+            <!-- Hamburger Toggle -->
+            <div class="menu-toggle" id="menuToggle">
+            ☰
+            </div>
+
+            <!-- Nav links -->
+            <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#frontend">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="firstSection">
+            <div class="aboutMe">
+                <h2>About.</h2>
+                <h4>Hi, I'm Jake</h4>
+                <p>
+                    I'm a Computer Science Graduate from Visayas State University, July 2025 .
+                    I enjoy building web applications that are user-friendly and useful.
+                    In my free time, I like to code, but most of the time, you'll find me playing games.
+                </p>
+            </div>
+            <div class="imgMe">
+                <img src="./images/me.jpg" alt="">
+            </div>
+        </div>
     </div>
 </body>
 </html>
