@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="about.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <title>Document</title>
 </head>
 <body>
@@ -24,8 +26,8 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
-        <div class="firstSection">
+    <div class="firstSection">
+        <div class="container">
             <div class="aboutMe">
                 <h2>About.</h2>
                 <h4>Hi, I'm Jake</h4>
@@ -40,5 +42,86 @@
             </div>
         </div>
     </div>
+
+    <div class="secondSection">
+        <div class="content">
+            <h2>Education</h2>
+            <p>
+                Even before college, I already aspired to become a developer, which inspired me to pursue a degree in 
+                Computer Science. I studied at Visayas State University (VSU), where I honed my skills in programming, 
+                web development, and problem-solving. My academic journey culminated with my thesis project in Forestry, 
+                which was developed in order to assist the forest guards in their work. This experience, along with my graduation, 
+                represents both my hard work and my passion for creating solutions that are practical and impactful.
+            </p>
+        </div>
+
+        <div class="images">
+            <div class="image-card"><img src="./images/turnOver.jpg" alt=""></div>
+            <div class="image-card"><img src="./images/turnOver1.jpg" alt=""></div>
+            <div class="image-card"><img src="./images/turnOver2.jpg" alt=""></div>
+        </div>
+    </div>
+
+    <div class="thirdSection">
+        <div class="graph">
+            <h2>Life in Percentages</h2>
+            <canvas id="lifeChart"></canvas>
+        </div>
+        
+        <div class="content">
+            <h2>Stats</h2>
+            <p>
+                If I had to break down my life into stats, I'd say 20% goes into coding, another 20% into testing, 
+                and 10% into designing — the things that keep me growing as a developer. 
+                As for the remaining 50%, well, let's just say it's invested somewhere else, and we'll leave it at that.
+            </p>
+        </div>
+    </div>
 </body>
+
+<script>
+    const ctx = document.getElementById('lifeChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Coding', 'Testing', 'Dota'],
+            datasets: [{
+                data: [30, 20, 50],
+                backgroundColor: [
+                    'rgba(60, 83, 114, 0.8)',
+                    'rgba(142, 68, 60, 0.8)',
+                    'rgba(98, 117, 91, 0.9)'
+                ],
+                borderColor: '#f7e7c6',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    enabled: false
+                },
+                datalabels: {
+                    color: '#f7e7c6',
+                    font: {
+                        weight: 'bold',
+                        size: 16
+                    },
+                    formatter: (value, context) => {
+                        return context.chart.data.labels[context.dataIndex];
+                    },
+                    anchor: 'center',
+                    align: 'center',
+                    
+                    padding: 0
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+</script>
 </html>
