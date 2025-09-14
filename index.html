@@ -186,60 +186,68 @@
         navLinks.classList.toggle("active");
     });
 
-    container.addEventListener('mousemove', (e) => {
-        const containerRect = container.getBoundingClientRect();
-        const mouseX = e.clientX - containerRect.left;
+    container.addEventListener("animationend", function(e) {
+        if (e.animationName === "appear") {
 
-        const xPercentage = (mouseX / containerRect.width) * 100;
-        const movePercentage = ((100 - xPercentage)* 0.2)-60;
-        
-        if (xPercentage < 50) {
-            backendDescription.style.opacity = 1;
-            frontendDescription.style.opacity = ((xPercentage) / 100);
+            container.addEventListener("mousemove", (e) => {
+                const containerRect = container.getBoundingClientRect();
+                const mouseX = e.clientX - containerRect.left;
 
-            techs.forEach((t, i) => {
-                if (i < 6) {
-                    t.classList.add("front-hide");
-                    t.style.opacity = ((xPercentage) / 100)-0.1;
-                    t.style.opacity < 0.5 ? t.style.visibility = "hidden" : t.style.visibility = "visible";
-                } else {
-                    t.classList.add("circle");
-                    t.classList.remove("front-hide", "back-hide");
-                    t.style.opacity = 1;
-                    t.style.visibility = "visible";
-                }
-            });
-        }
-        else {
-            frontendDescription.style.opacity = 1;
-            backendDescription.style.opacity = 1 - ((xPercentage) / 100);
+                const xPercentage = (mouseX / containerRect.width) * 100;
+                const movePercentage = ((100 - xPercentage) * 0.2) - 60;
+                
+                if (xPercentage < 50) {
+                    backendDescription.style.opacity = 1;
+                    frontendDescription.style.opacity = (xPercentage / 100);
 
-            techs.forEach((t, i) => {
-                if (i >= 6) {
-                    t.classList.add("back-hide");
-                    t.style.opacity = 1 - 0.1 - ((xPercentage) / 100);
-                    t.style.opacity < 0.5 ? t.style.visibility = "hidden" : t.style.visibility = "visible";
-                    
                     techs.forEach((t, i) => {
                         if (i < 6) {
-                            t.style.opacity = 1;
+                            t.classList.add("front-hide");
+                            t.style.opacity = (xPercentage / 100) - 0.1;
+                            t.style.opacity < 0.5
+                                ? t.style.visibility = "hidden"
+                                : t.style.visibility = "visible";
                         } else {
-                            t.style.opacity = 1 - ((xPercentage - 50) / 100)-0.1;
+                            t.classList.add("circle");
+                            t.classList.remove("front-hide", "back-hide");
+                            t.style.opacity = 1;
+                            t.style.visibility = "visible";
                         }
                     });
                 } else {
-                    t.classList.add("circle");
-                    t.classList.remove("front-hide", "back-hide");
-                    t.style.opacity = 1;
-                    t.style.visibility = "visible";
+                    frontendDescription.style.opacity = 1;
+                    backendDescription.style.opacity = 1 - (xPercentage / 100);
+
+                    techs.forEach((t, i) => {
+                        if (i >= 6) {
+                            t.classList.add("back-hide");
+                            t.style.opacity = 1 - 0.1 - (xPercentage / 100);
+                            t.style.opacity < 0.5
+                                ? t.style.visibility = "hidden"
+                                : t.style.visibility = "visible";
+
+                            techs.forEach((t, i) => {
+                                if (i < 6) {
+                                    t.style.opacity = 1;
+                                } else {
+                                    t.style.opacity = 1 - ((xPercentage - 50) / 100) - 0.1;
+                                }
+                            });
+                        } else {
+                            t.classList.add("circle");
+                            t.classList.remove("front-hide", "back-hide");
+                            t.style.opacity = 1;
+                            t.style.visibility = "visible";
+                        }
+                    });
                 }
+
+                backendImg.style.clipPath = `inset(0 ${xPercentage}% 0 0)`;
+                backendImg.style.transform = `translateX(${movePercentage}%)`;
+                frontendImg.style.transform = `translateX(${movePercentage}%)`;
             });
         }
-
-        backendImg.style.clipPath = `inset(0 ${xPercentage}% 0 0)`;
-        backendImg.style.transform = `translateX(${movePercentage}%)`;
-        frontendImg.style.transform = `translateX(${movePercentage}%)`;
-    })
+    });
 
     container.addEventListener('mouseleave', () => {
         backendImg.style.clipPath = 'inset(0 50% 0 0)';
