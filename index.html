@@ -188,6 +188,10 @@
 
     container.addEventListener("animationend", function(e) {
         if (e.animationName === "appear") {
+        backendImg.style.animation = "none";
+        frontendImg.style.animation = "none";
+        backendImg.style.transform = `translateX(-50%)`;
+        frontendImg.style.transform = `translateX(-50%)`;
 
             container.addEventListener("mousemove", (e) => {
                 const containerRect = container.getBoundingClientRect();
