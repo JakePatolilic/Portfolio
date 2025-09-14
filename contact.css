@@ -10,6 +10,8 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     color: #1e293b;
+    position: relative;
+    z-index: -2;
 }
 
 .navbar {
@@ -27,6 +29,7 @@ body {
     opacity: 0;
     animation: slideInTop 1s forwards;
     animation-delay: 0.3s;
+    position: inherit;
 }
 
 .nav-container {
@@ -88,6 +91,8 @@ body {
     align-items: center;
     min-height: calc(100vh - 70px);
     gap: 3rem;
+    position: inherit;
+    z-index: 0;
 }
 
 .contact-container {

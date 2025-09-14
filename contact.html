@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" style="z-index: 1;">
         <div class="nav-container">
             <div class="logo"><a href="index.html" class="logo">JP</a></div>
 
@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <div class="main-content">
+    <div class="main-content" style="z-index: -2;">
         <div class="contact-container">
             <div class="contact-header">
                 <h1>Get In Touch</h1>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="contact-grid">
-                <div class="contact-item" onclick="window.location.href='tel:+639268762360'">
+                <div class="contact-item">
                     <div class="contact-icon">📱</div>
                     <div class="contact-info">
                         <h3>Phone</h3>
@@ -43,11 +43,11 @@
                     </div>
                 </div>
 
-                <div class="contact-item" onclick="window.location.href='mailto:jakepatolilic@gmail.com'">
+                <div class="contact-item">
                     <div class="contact-icon">✉️</div>
                     <div class="contact-info">
                         <h3>Email</h3>
-                        <p><a href="mailto:jakepatolilic@gmail.com">jakepatolilic@gmail.com</a></p>
+                        <a href="mailto:jakepatolilic@gmail.com">jakepatolilic@gmail.com</a>
                     </div>
                 </div>
             </div>
