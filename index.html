@@ -7,9 +7,9 @@
     <title>Jake</title>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" style="z-index: 1000;">
         <div class="nav-container">
-            <div class="logo">JP</div>
+            <div class="logo"><a href="index.html" class="logo">JP</a></div>
 
             <!-- Hamburger Toggle -->
             <div class="menu-toggle" id="menuToggle">
@@ -18,14 +18,14 @@
 
             <!-- Nav links -->
             <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="#frontend">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="firstSection">
+    <div class="firstSection" style="z-index: -1;">
         <div class="container">
             <div id="backend" class="backendDescription">
                 <h1>Backend</h1>
@@ -34,7 +34,7 @@
             <img src="./images/backend.png" alt="" class="backendImg">
             <img src="./images/frontend.png" alt="" class="frontendImg">
             
-            <div>
+            <div class="technologies">
                 <div class="tech-container"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original-wordmark.svg" alt="HTML"></div>
                 <div class="tech-container"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original-wordmark.svg" alt="CSS"></div>
                 <div class="tech-container"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
@@ -137,8 +137,8 @@
         </div>
          <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
-            <li><a href="#frontend">Frontend</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
 
@@ -172,6 +172,19 @@
     const projects = document.querySelectorAll('.project');
     const techs = document.querySelectorAll('.tech-container');
     const exp = document.querySelectorAll('.experience');
+
+    frontendImg.classList.add('animate-right');
+
+    frontendImg.addEventListener('animationend', () => {
+        frontendImg.style.clipPath = 'inset(0 0 0 0)';
+    });
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
 
     container.addEventListener('mousemove', (e) => {
         const containerRect = container.getBoundingClientRect();
@@ -306,6 +319,15 @@
         if (e.target === galleryOverlay1) {
             galleryOverlay1.style.display = "none";
         }
+    });
+
+    const animatedElementss = document.querySelectorAll('.frontendDescription, .backendDescription, .technologies');
+
+    animatedElementss.forEach(el => {
+        el.addEventListener('animationend', () => {
+            el.style.animation = 'none';
+            el.style.opacity = 1;
+        }, { once: true });
     });
 </script>
 
