@@ -4,30 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="contact.css">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">JP</div>
+            <div class="logo"><a href="index.html" class="logo">JP</a></div>
 
             <!-- Hamburger Toggle -->
             <div class="menu-toggle" id="menuToggle">
-            ☰
+                ☰
             </div>
 
             <!-- Nav links -->
             <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="firstSection">
-        safdsad
+    <div class="main-content">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h1>Get In Touch</h1>
+                <p>Feel free to reach out through any of the following:</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-item" onclick="window.location.href='tel:+639268762360'">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-info">
+                        <h3>Phone</h3>
+                        <p><a href="tel:+639268762360">+63 926 876 2360</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item" onclick="window.location.href='mailto:jakepatolilic@gmail.com'">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-info">
+                        <h3>Email</h3>
+                        <p><a href="mailto:jakepatolilic@gmail.com">jakepatolilic@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-section">
+                <h3>Connect With Me</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/jake-lorenz-patolilic-4a190b2ab" target="_blank" class="social-link">
+                        <span>💼</span>
+                        LinkedIn
+                    </a>
+                    <a href="https://www.facebook.com/jakelorenz.patolilic" target="_blank" class="social-link">
+                        <span>📘</span>
+                        Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <form id="contactForm" class="contact-form">
+            <div class="form-header">
+                <h2>Send a Message</h2>
+                <p>Or drop me a message directly using this form.</p>
+            </div>
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="reply_to" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <textarea name="message" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="send-btn">Send Message</button>
+        </form>
     </div>
-    
+
+    <div class="fifthSection">
+        <div class="footer">
+            <a href="index.html">© 2025 Jake Lorenz Patolilic</a>
+        </div>
+         <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 </body>
+
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    const navLinkItems = document.querySelectorAll('.nav-links a');
+    navLinkItems.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    const contactItems = document.querySelectorAll('.contact-item');
+    contactItems.forEach(item => {
+        const link = item.querySelector('a');
+        if (link) {
+            item.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'A') {
+                    link.click();
+                }
+            });
+        }
+    });
+
+    (function() {
+        emailjs.init("Bx9LDXjnsL6qEVR5X");
+    })();
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const button = this.querySelector('.send-btn');
+        const originalText = button.textContent;
+        
+        button.textContent = 'Sending...';
+        button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+
+        emailjs.sendForm("service_1wgjxuu", "template_nl85usk", this)
+        .then(() => {
+            Swal.fire({
+                icon: "success",
+                title: "Message Sent!",
+                text: "Your message has been sent successfully.",
+                confirmButtonColor: "#667eea",
+            });
+            button.textContent = 'Message Sent!';
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                this.reset();
+            }, 2000);
+        })
+        .catch((err) => {
+            console.error("Error sending message:", err);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong. Please try again later.",
+                confirmButtonColor: "#FCD53A",
+            });
+            button.textContent = originalText;
+            button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        });
+    });
+</script>
 </html>
